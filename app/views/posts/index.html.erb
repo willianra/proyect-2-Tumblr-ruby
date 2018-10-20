@@ -1,7 +1,7 @@
-<%= @posts.each do |post| %>
-  <div class="post_wrapper">
-    <h2 class="title"><%= link_to post.title, post%></h2>
-    <p class="data"><%=time_ago_in_words(post.created_at)%>ago
+<% @posts.each do |post| %>
+  <div class="container">
+    <h2 class=""><%= link_to post.title, post%></h2>
+    <p class="data"><%= time_ago_in_words(post.created_at)%>
      </p>
   </div>
-  <% end %>
+<% end %>
