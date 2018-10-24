@@ -1,4 +1,5 @@
 <div id="post_content">
+<div class="container">
 
   <h1 class="title">
     <%= @post.title %>
@@ -11,10 +12,11 @@
   <p>
     <%= @post.body %>
   </p>
-  <div id="comments">
-    <h2><%= @post.comments.count%>Comments</h2>
+  <div class="container">
+    <h2><%= @post.comments.count%> comentarios</h2>
     <%= render @post.comments %>
-    <h3> Join Discussion:</h3>
+    <h3> comentar:</h3>
     <%= render "comments/form"%>
   </div>
+</div>
 </div>
