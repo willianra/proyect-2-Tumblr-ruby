@@ -1,8 +1,13 @@
 <% @posts.each do |post| %>
   <div class="container">
-    <h2 class=""><%= link_to post.title, post%></h2>
-    <p class="data"><%= time_ago_in_words(post.created_at)%>
+    <div class="container">
+      <h2 class=""><%= link_to post.title, post%></h2>
+
+    <div class="container">
+      <p class="data"> hace <%= time_ago_in_words(post.created_at)%>
       <h2 ><%= post.body%></h2>
+    </div>
      </p>
+   </div>
   </div>
 <% end %>

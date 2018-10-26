@@ -1,17 +1,25 @@
 <div id="post_content">
 <div class="container">
 
+<div class="container">
+
   <h1 class="title">
     <%= @post.title %>
   </h1>
   <p class="date">
-  submitted <%= time_ago_in_words(@post.created_at)%>ago |
-  <%= link_to 'Edit', edit_post_path(@post) %>
-  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?'} %>
+  hace <%= time_ago_in_words(@post.created_at)%> ago |
+    <% if user_signed_in? %>
+      <%= link_to 'Edit', edit_post_path(@post) %>
+      <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?'} %>
+    <% end %>
   </p>
+</div>
+<div style="padding: 3px;" class="container">
   <p>
     <%= @post.body %>
   </p>
+
+</div>
   <div class="container">
     <h2><%= @post.comments.count%> comentarios</h2>
     <%= render @post.comments %>

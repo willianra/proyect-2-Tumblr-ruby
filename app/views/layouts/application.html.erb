@@ -9,11 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sidebarNavigation" data-sidebarClass="navbar-dark bg-dark">
 
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">TUMBLR</a>
 
         <button class="navbar-toggler leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,15 +25,24 @@
                 <li class="nav-item active">
                         <span class="nav-link"><%=link_to"Home",root_path %></span>
                 </li>
-                <li class="nav-item">
-                  <span class="nav-link"><%=link_to"crear",new_post_path  %></span>
-                </li>
+                <% if user_signed_in?%>
+                  <li class="nav-item">
+                    <span class="nav-link"><%=link_to"Crear Post",new_post_path  %></span>
+                  </li>
+                <% end %>
                 <li class="nav-item">
                   <span class="nav-link"><%=link_to"about",about_path  %></span>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">about</a>
-                </li>
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <span class="nav-link"><%=link_to"salir",destroy_user_session_path,method: :delete  %></span>
+                  </li>
+                <% end %>
+                <% if !user_signed_in? %>
+                  <li class="nav-item">
+                    <span class="nav-link"><%=link_to"iniciar",new_user_session_path %></span>
+                  </li>
+                  <% end %>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Dropdown</a>
@@ -50,6 +59,7 @@
             </form>
         </div>
     </nav>
+      <body>
     <% if current_page?(root_path)%>
       <div class="text-center">
         <%= link_to "ULTIMOS POST",root_path ,class: "text-center btn btn-dark"%>
@@ -64,7 +74,7 @@
       </div>
       <%end%>
     <%= flash.each do |name, msg| %>
-    <%= content_tag(:div,msg, class: "alert") %>
+      <%= content_tag(:div,msg, class: "alert") %>
     <%end%>
     <%= yield %>
 
